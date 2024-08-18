@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solstice - Perfume</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Calibri:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Material+Icons+Outlined&display=swap');
+        
+        body {
+            font-family: Calibri, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            text-align: center;
+        }
+
+        .banner {
+            background-color: #b39eb5; /* Pastel purple color */
+            color: white;
+            width: 100%;
+            padding: 15px;
+            font-size: 1.2em;
+            font-weight: bold;
+            position: fixed;
+            top: 0;
+            left: 0;
+            text-align: center;
+            z-index: 1000;
+            box-sizing: border-box; /* Ensure padding is included in width calculation */
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 10px 20px;
+            position: fixed;
+            top: 52px; /* Directly below the banner */
+            left: 0;
+            background-color: #fff;
+            border-bottom: 1px solid #ddd;
+            z-index: 1000;
+            box-sizing: border-box; /* Ensure padding is included in width calculation */
+            margin: 0; /* Remove extra margin */
+        }
+
+        .header .left, .header .right {
+            display: flex;
+            align-items: center;
+            gap: 15px; /* Consistent spacing */
+        }
+
+        .header .company-name {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 2em;
+            font-weight: bold;
+            margin: 0;
+            flex: 2; /* Center the company name */
+        }
+
+        .header .material-icons-outlined {
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .content {
+            margin-top: 100px; /* Space for the banner and header */
+            padding: 0;
+            width: 100%;
+        }
+
+        .product-image {
+            width: 100%; /* Make the container full width */
+            margin: 0; /* Remove bottom margin */
+            padding: 0; /* Remove padding */
+        }
+
+        .product-image img {
+            width: 100%; /* Image will cover the entire width */
+            height: auto; /* Maintain aspect ratio */
+            display: block; /* Removes any default spacing */
+            margin: 0; /* Remove default margin */
+        }
+
+        .check-range {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 3em;
+            font-weight: bold;
+            font-style: italic;
+            color: #020000;
+            margin: 20px 0;
+        }
+
+        .gallery-container {
+            display: flex;
+            justify-content: center; /* Center the gallery */
+            padding: 0 20px; /* Add space on both sides */
+            margin-bottom: 40px; /* Add space below the gallery */
+        }
+
+        .product-gallery {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px; /* Gap between images */
+            max-width: 1200px; /* Limit the max width of the gallery */
+            width: 100%;
+        }
+
+        .product-box {
+            position: relative;
+            width: calc(25% - 20px); /* Four items per row with gap */
+            border: 1px solid #000; /* Thin black border */
+            box-sizing: border-box; /* Ensure border is included in width calculation */
+            overflow: hidden; /* Hide overflow for the heart icon */
+            text-align: center;
+        }
+
+        .product-box img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .heart-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            color: #020000; /* Black color */
+        }
+
+        .product-price {
+            font-size: 1.2em;
+            margin: 10px 0;
+            color: #333;
+        }
+
+        .add-to-cart-container {
+            margin: 10px 0; /* Space below the product box */
+        }
+
+        .add-to-cart {
+            background-color: #000;
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 80%; /* Adjust width to make the button shorter */
+            max-width: 200px; /* Optional: Set a max-width */
+            margin: 0 auto; /* Center the button */
+            display: block; /* Ensure block-level display */
+        }
+
+        .add-to-cart:hover {
+            background-color: #333;
+        }
+
+        .footer-box {
+            background-color: black;
+            color: white;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+            margin-top: 40px; /* Add space above the footer box */
+        }
+
+        .footer-box h1 {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 2em;
+            font-weight: bold;
+            margin: 0;
+            color: #ffffff; /* Change color to black */
+        }
+
+        .footer-box .subscribe-form {
+            margin: 20px 0;
+        }
+
+        .footer-box .subscribe-form input[type="email"] {
+            padding: 10px;
+            font-size: 1em;
+            width: 60%;
+            border: none;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .footer-box .subscribe-form button {
+            background-color: #ffffff; /* Change background color to black */
+            color: #000000; /* Change text color to white */
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .footer-box .subscribe-form button:hover {
+            background-color: #484747; /* Optional: Slightly lighter black on hover */
+        }
+
+        .footer-box .lists {
+            display: flex;
+            justify-content: center; /* Center align the lists */
+            gap: 20px; /* Space between lists */
+            margin-top: 20px;
+            padding: 0;
+            flex-wrap: wrap; /* Allow lists to wrap if necessary */
+        }
+
+        .footer-box .lists ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: center; /* Center align the text inside each list */
+            flex: 1; /* Allow each list to grow */
+            max-width: 200px; /* Limit the width of each list */
+        }
+
+        .footer-box .lists ul li {
+            margin-bottom: 10px;
+            color: #ffffff; /* Change text color to black */
+        }
+    </style>
+</head>
+<body>
+    <div class="banner">
+        Use SAVE40 to get 40% off on your first order
+    </div>
+    <div class="header">
+        <div class="left">
+            <span class="material-icons-outlined">menu</span>
+            <span class="material-icons-outlined">search</span>
+            <span>Search</span>
+        </div>
+        <h1 class="company-name">Solstice</h1>
+        <div class="right">
+            <span class="material-icons-outlined">person</span>
+            <span class="material-icons-outlined">favorite_border</span>
+            <span class="material-icons-outlined">shopping_bag</span>
+        </div>
+    </div>
+    <div class="content">
+        <div class="product-image">
+            <img src="Leonardo_Phoenix_A_sleek_modern_perfume_advertisement_featurin_0.jpg" alt="Solstice Perfume Bottle">
+        </div>
+        <h1 class="check-range">Check out our new range</h1>
+        <div class="gallery-container">
+            <div class="product-gallery">
+                <div class="product-box">
+                    <div class="heart-icon">&#9825;</div>
+                    <img src="Leonardo_Phoenix_A_sleek_modern_perfume_advertisement_featurin_1.jpg" alt="Product 1">
+                    <p class="product-price">₹2299</p>
+                    <div class="add-to-cart-container">
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <div class="heart-icon">&#9825;</div>
+                    <img src="Leonardo_Phoenix_A_sleek_modern_perfume_advertisement_featurin_3 (1).jpg" alt="Product 2">
+                    <p class="product-price">₹1999</p>
+                    <div class="add-to-cart-container">
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <div class="heart-icon">&#9825;</div>
+                    <img src="Leonardo_Phoenix_A_sleek_modern_perfume_advertisement_featurin_3 (2).jpg" alt="Product 3">
+                    <p class="product-price">₹899</p>
+                    <div class="add-to-cart-container">
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <div class="heart-icon">&#9825;</div>
+                    <img src="Leonardo_Phoenix_A_sleek_modern_perfume_advertisement_featurin_3.jpg" alt="Product 4">
+                    <p class="product-price">₹2599</p>
+                    <div class="add-to-cart-container">
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-box">
+            <h1>BE A PART OF SOLSTICE</h1>
+            <div class="subscribe-form">
+                <input type="email" placeholder="email address">
+                <button>Subscribe</button>
+            </div>
+            <div class="lists">
+                <ul>
+                    <li>Customer Care</li>
+                    <li>Returns</li>
+                    <li>Store Locator</li>
+                    <li>Shipping</li>
+                    <li>FAQs</li>
+                </ul>
+                <ul>
+                    <li>Community</li>
+                    <li>Blog</li>
+                    <li>Careers</li>
+                    <li>Refer a friend</li>
+                    <li>Loyalty Program</li>
+                </ul>
+                <ul>
+                    <li>Legal</li>
+                    <li>Privacy Policy</li>
+                    <li>Terms & Condition</li>
+                    <li>Terms of Service</li>
+                    <li>Payments</li>
+                </ul>
+                <ul>
+                    <li>Join us at</li>
+                    <li>Instagram</li>
+                    <li>Facebook</li>
+                    <li>Youtube</li>
+                    <li>Pinterest</li>
+                </ul>
+            </div>
+            <h3>© 2024 SOLSTICE. ALL RIGHTS RESERVED</h3>
+        </div>
+    </div>
+</body>
+</html>
